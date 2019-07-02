@@ -1,29 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-
-@Component({
- selector: 'app-cadastroaluno',
- templateUrl: './cadastroaluno.component.html',
- styleUrls: ['./cadastroaluno.component.css']
-})
-export class CadastroalunoComponent implements OnInit {
-aluno: Object;
- alunos = [];
- nome: String;
- matricula: String;
- idade: Number;
- listidades = [];
- cadastrar() {
-   this.aluno = [this.nome, this.matricula, this.idade];
-   this.alunos.push(this.aluno);
-   this.listidades.push(this.idade);
- }
- Apagar(aux) {
-   let posicao = this.alunos.indexOf(aux);
-   this.alunos.splice(posicao,1);
- }
- constructor() { }
-
- ngOnInit() {
- }
-
-}
+<h1 class = titulo>Cadastro de Alunos</h1>
+<table>
+ <td>
+   <tr>
+Nome:<input type = "text" [(ngModel)] = "nome"></tr><tr>
+Matricula:<input type = "text" [(ngModel)] = "matricula"></tr><tr>
+Idade:<input type = "text" [(ngModel)] = "idade"></tr>
+ </td>
+</table>
+<button (click) = "cadastrar()">Salvar</button>
+<div *ngIf = "alunos.length == 0">
+ <p>
+   Não há alunos cadastrados
+ </p>
+</div>
+<ul *ngFor = "let aux of alunos">
+ <li>
+   {{aux}}<button (click) = "Apagar()">Apagar</button>
+ </li>
+</ul>
